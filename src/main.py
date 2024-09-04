@@ -34,11 +34,11 @@ async def recipes(recipe: schemas.RecipeIn) -> models.Recipe:
 @app.get('/recipes/', response_model=List[schemas.RecipeShortenedOut])
 async def get_recipes() -> List[schemas.RecipeShortenedOut]:
     res = await session.execute(
-        select(models.Recipe.dish_name, 
-               models.Recipe.views, 
-               models.Recipe.cooking_time).\
-        order_by(models.Recipe.views.desc(), 
-                 models.Recipe.cooking_time))
+        select(models.Recipe.dish_name,
+               models.Recipe.views,
+               models.Recipe.cooking_time).order_by(
+                models.Recipe.views.desc(),
+                models.Recipe.cooking_time))
     return [schemas.RecipeShortenedOut.from_orm(row) for row in res.all()]
 
 
