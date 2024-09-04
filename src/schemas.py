@@ -24,4 +24,3 @@ class RecipeShortenedOut(BaseRecipe):
 
     class Config:
         orm_mode = True
-        
