@@ -35,8 +35,8 @@ async def recipes(recipe: schemas.RecipeIn) -> models.Recipe:
 async def get_recipes() -> List[schemas.RecipeShortenedOut]:
     res: Any = await session.execute(
         select(
-            models.Recipe.dish_name, models.Recipe.views, models.Recipe.cooking_time
-        ).order_by(models.Recipe.views.desc(), models.Recipe.cooking_time)
+            models.Recipe.dish_name, models.Recipe.views, models.Recipe.cook_time
+        ).order_by(models.Recipe.views.desc(), models.Recipe.cook_time)
     )
     return [schemas.RecipeShortenedOut.from_orm(row) for row in res.all()]
 
