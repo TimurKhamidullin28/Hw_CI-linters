@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any, List
 
 from fastapi import FastAPI, HTTPException
 from sqlalchemy.future import select
