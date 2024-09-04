@@ -22,7 +22,7 @@ async def shutdown():
     await async_engine.dispose()
 
 
-@app.post('/recipes/', response_model=schemas.RecipeOut)
+@app.post("/recipes/", response_model=schemas.RecipeOut)
 async def recipes(recipe: schemas.RecipeIn) -> models.Recipe:
     new_recipe = models.Recipe(**recipe.dict())
     async with session as async_session:
@@ -31,7 +31,7 @@ async def recipes(recipe: schemas.RecipeIn) -> models.Recipe:
     return new_recipe
 
 
-@app.get('/recipes/', response_model=List[schemas.RecipeShortenedOut])
+@app.get("/recipes/", response_model=List[schemas.RecipeShortenedOut])
 async def get_recipes() -> List[schemas.RecipeShortenedOut]:
     res: Any = await session.execute(
         select(models.Recipe.dish_name,
@@ -42,7 +42,7 @@ async def get_recipes() -> List[schemas.RecipeShortenedOut]:
     return [schemas.RecipeShortenedOut.from_orm(row) for row in res.all()]
 
 
-@app.get('/recipes/{recipe_id}', response_model=schemas.RecipeOut)
+@app.get("/recipes/{recipe_id}", response_model=schemas.RecipeOut)
 async def get_recipe(recipe_id: int) -> schemas.RecipeOut | tuple[str, int]:
     res: Any = await session.execute(select(models.Recipe).where(
         models.Recipe.id == recipe_id))
