@@ -32,7 +32,7 @@ async def recipes(recipe: schemas.RecipeIn) -> models.Recipe:
 
 
 @app.get('/recipes/', response_model=List[schemas.RecipeShortenedOut])
-async def recipes() -> List[schemas.RecipeShortenedOut]:
+async def get_recipes() -> List[schemas.RecipeShortenedOut]:
     res: Any = await session.execute(
         select(models.Recipe.dish_name,
                models.Recipe.views,
