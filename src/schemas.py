@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class BaseRecipe(BaseModel):
     dish_name: str
     views: int
-    cooking_time: int
+    time: int
 
 
 class RecipeIn(BaseRecipe):
